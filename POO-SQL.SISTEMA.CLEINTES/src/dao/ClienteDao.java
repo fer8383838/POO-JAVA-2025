@@ -78,10 +78,41 @@ public class ClienteDao {
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ps.executeUpdate();
+            // Devuelve el número de filas afectadas por el DELETE
+            int filasAfectadas = ps.executeUpdate();
+            System.out.println("Filas afectadas al eliminar cliente ID=" + id + ": " + filasAfectadas);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
+    public List<Cliente> buscarPorNombre(String filtro) {
+        List<Cliente> lista = new ArrayList<>();
+        String sql = "SELECT * FROM clientes WHERE nombre LIKE ? ORDER BY nombre";
+        try (Connection con = ConnectionFactory.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + filtro + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Cliente(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getString("email")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+
+
+
+
 }
 

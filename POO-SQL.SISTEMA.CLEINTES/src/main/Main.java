@@ -2,6 +2,7 @@ package main;
 
 import dao.ClienteDao;
 import modelo.Cliente;
+import pedidoDao.PedidoDao;
 
 import java.util.List;
 
@@ -33,9 +34,27 @@ public class Main {
 
         // Eliminar un cliente (ejemplo: eliminar el primer cliente)
         if (!clientes.isEmpty()) {
-            int idClienteEliminar = clientes.get(0).getId();
+            int idClienteEliminar = clientes.get(4).getId();
             ClienteDao.deleteCliente(idClienteEliminar);
             System.out.println("Cliente eliminado.");
+
+            List<Cliente> despues = ClienteDao.getAllClientes();
+            System.out.println("Clientes tras intento de borrar:");
+            for (Cliente c : despues) {
+                System.out.println(c);
+            }
         }
+
+
+
+        System.out.println("\n=== FILTRAR nombres que contengan 'Ana' ===");
+        ClienteDao.buscarPorNombre("Ana").forEach(System.out::println);
+
+
+        System.out.println("\n=== PEDIDOS DEL CLIENTE ID=2 ===");
+        PedidoDao pedidoDao = new PedidoDao();
+        pedidoDao.getPedidosPorCliente(2).forEach(System.out::println);
+
+
     }
 }
