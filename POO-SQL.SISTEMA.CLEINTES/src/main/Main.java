@@ -12,8 +12,8 @@ public class Main {
 
         // Crear un nuevo cliente y insertarlo en la base de datos
         Cliente nuevoCliente = new Cliente("Luis Fernando", "luis@example.com");
-        ClienteDao.insertCliente(nuevoCliente);
-        System.out.println("Cliente insertado.");
+        //ClienteDao.insertCliente(nuevoCliente);
+        //System.out.println("Cliente insertado.");
 
 
 
@@ -33,7 +33,7 @@ public class Main {
         }
 
         // Eliminar un cliente (ejemplo: eliminar el primer cliente)
-        if (!clientes.isEmpty()) {
+        /*if (!clientes.isEmpty()) {
             int idClienteEliminar = clientes.get(4).getId();
             ClienteDao.deleteCliente(idClienteEliminar);
             System.out.println("Cliente eliminado.");
@@ -43,7 +43,7 @@ public class Main {
             for (Cliente c : despues) {
                 System.out.println(c);
             }
-        }
+        }*/
 
 
 
