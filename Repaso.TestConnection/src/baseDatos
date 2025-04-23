@@ -1,0 +1,7 @@
+CREATE DATABASE Tienda
+
+CREATE TABLE Productos(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	nombre VARCHAR (50),
+	precio DECIMAL (10,2)
+);
